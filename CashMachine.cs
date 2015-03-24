@@ -23,31 +23,24 @@ namespace ATM
             }
         }
         private Money _money;
+        private MoneyLoader _moneyLoader;
+        private MoneyUploader _moneyUploader;
 
         public CashMachine(string path)
         {
-            _money = new Money();
             _path = path;
-            StreamReader sr = new StreamReader(_path);
-            while (!sr.EndOfStream)
+            _moneyLoader = new MoneyLoader(path);
+            _money = _moneyLoader.LoadMoney();
+            foreach (KeyValuePair<Banknote, int> item in _money.Banknotes)
             {
-                try
-                {
-                    string[] temp = sr.ReadLine().Split(' ');
-                    int banknoteNomimal = int.Parse(temp[0]);
-                    int banknotesCount = int.Parse(temp[1]);
-                    _money.Add(banknoteNomimal, banknotesCount);
-                    _sum += banknoteNomimal * banknotesCount;
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Что-то пошло не так\n");
-                }
+                int banknoteNomimal = item.Key.nominal;
+                int banknotesCount = item.Value;
+                _sum += banknoteNomimal * banknotesCount;
             }
-            sr.Close();
+
         }
 
-        public Money GetMoney(int userSum)
+        public Money WithdrawMoney(int userSum)
         {
             Money temp = new Money();
             if (userSum <= _sum)
@@ -73,14 +66,10 @@ namespace ATM
                     }
                 }
 
-            }
+                //Записывает текущее состояние денег в файл
+               this._moneyUploader = new MoneyUploader(_path);
+               this._moneyUploader.UploadMoney(this._money);
 
-            using (StreamWriter sw = new StreamWriter(_path))
-            {
-                foreach (KeyValuePair<Banknote, int> item in this._money.Banknotes)
-                {
-                    sw.WriteLine("{0} {1}", item.Key.nominal, item.Value);
-                }
             }
 
             return temp;

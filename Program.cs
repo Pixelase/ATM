@@ -16,29 +16,31 @@ namespace ATM
             Console.WriteLine("Состояние счёта:");
             Console.WriteLine(atm.Status() + '\n');
 
-            Console.WriteLine("Введите нужную сумму:");            
-            int userMoney;
-            int.TryParse(Console.ReadLine(), out userMoney);
-            while (userMoney > atm.Sum || userMoney <= 0)
+            while (atm.Sum != 0)
             {
-                if (userMoney > atm.Sum || userMoney <= 0)
+                Console.WriteLine("Введите нужную сумму:");
+                int userMoney;
+                int.TryParse(Console.ReadLine(), out userMoney);
+                while (userMoney > atm.Sum || userMoney <= 0)
                 {
-                    Console.WriteLine("Некорректный ввод\n\n" + "Введите нужную сумму:");
-                    int.TryParse(Console.ReadLine(), out userMoney);
+                    if (userMoney > atm.Sum || userMoney <= 0)
+                    {
+                        Console.WriteLine("Некорректный ввод\n\n" + "Введите нужную сумму:");
+                        int.TryParse(Console.ReadLine(), out userMoney);
+                    }
                 }
+
+                Console.WriteLine("Ваши деньги:");
+                foreach (KeyValuePair<Banknote, int> item in atm.WithdrawMoney(userMoney).Banknotes)
+                {
+                    Console.WriteLine("Купюра:" + item.Key.nominal + " <-> Количество: " + item.Value);
+                }
+
+                Console.WriteLine("\nСостояние счёта:");
+                Console.WriteLine(atm.Status() + '\n');
             }
 
-            Console.WriteLine("Ваши деньги:");
-            foreach (KeyValuePair<Banknote, int> item in atm.GetMoney(userMoney).Banknotes)
-            {
-                Console.WriteLine("Купюра:" + item.Key + " <-> Количество: " + item.Value);
-            }
-
-            Console.WriteLine("\nСостояние счёта:");
-            Console.WriteLine(atm.Status());
             Console.ReadKey();
-
-            
         }
     }
 }
