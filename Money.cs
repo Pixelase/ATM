@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ATM
 {
-    class Money
+    internal class Money
     {
-        public Dictionary<Banknote, int> Banknotes
-        {
-            get;
-            set;
-        }
+        public Dictionary<Banknote, int> Banknotes { get; set; }
 
         public Money()
         {

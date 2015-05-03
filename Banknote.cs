@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ATM
+﻿namespace ATM
 {
-    class Banknote
+    internal class Banknote
     {
-        public int nominal
+        public Banknote(int nominal)
         {
-            get;
-            set;
+            Nominal = nominal;
         }
 
-        public Banknote(int Nominal)
-        {
-            nominal = Nominal;
-        }
+        public int Nominal { get; set; }
     }
 }

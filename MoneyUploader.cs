@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
 namespace ATM
 {
     class MoneyUploader
     {
-        private string _path;
+        private readonly string _path;
 
         public MoneyUploader(string path)
         {
@@ -25,7 +22,7 @@ namespace ATM
                 {
                     foreach (KeyValuePair<Banknote, int> item in money.Banknotes)
                     {
-                        sw.WriteLine("{0} {1}", item.Key.nominal, item.Value);
+                        sw.WriteLine("{0} {1}", item.Key.Nominal, item.Value);
                     }
                 }
 

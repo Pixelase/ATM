@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 
 namespace ATM
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            CashMachine atm = new CashMachine(@"data.txt");
+            if (args == null) throw new ArgumentNullException("args");
+            var atm = new CashMachine(@"data.txt");
 
             Console.WriteLine("Состояние счёта:");
             Console.WriteLine(atm.Status() + '\n');
@@ -31,9 +27,9 @@ namespace ATM
                 }
 
                 Console.WriteLine("Ваши деньги:");
-                foreach (KeyValuePair<Banknote, int> item in atm.WithdrawMoney(userMoney).Banknotes)
+                foreach (var item in atm.WithdrawMoney(userMoney).Banknotes)
                 {
-                    Console.WriteLine("Купюра:" + item.Key.nominal + " <-> Количество: " + item.Value);
+                    Console.WriteLine("Купюра:" + item.Key.Nominal + " <-> Количество: " + item.Value);
                 }
 
                 Console.WriteLine("\nСостояние счёта:");

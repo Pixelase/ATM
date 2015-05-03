@@ -1,29 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 
 namespace ATM
 {
-    class CashMachine
+    internal class CashMachine
     {
-        private int _sum;
-        private string _path;
-        public int Sum
-        {
-            get
-            {
-                return _sum;
-            }
-            private set
-            {
-                _sum = value;
-            }
-        }
-        private Money _money;
+        private readonly Money _money;
         private MoneyLoader _moneyLoader;
+        private readonly string _path;
         private MoneyUploader _moneyUploader;
 
         public CashMachine(string path)
@@ -31,27 +15,28 @@ namespace ATM
             _path = path;
             _moneyLoader = new MoneyLoader(path);
             _money = _moneyLoader.LoadMoney();
-            foreach (KeyValuePair<Banknote, int> item in _money.Banknotes)
+            foreach (var item in _money.Banknotes)
             {
-                int banknoteNomimal = item.Key.nominal;
-                int banknotesCount = item.Value;
-                _sum += banknoteNomimal * banknotesCount;
+                var banknoteNomimal = item.Key.Nominal;
+                var banknotesCount = item.Value;
+                Sum += banknoteNomimal * banknotesCount;
             }
-
         }
+
+        public int Sum { get; private set; }
 
         public Money WithdrawMoney(int userSum)
         {
-            Money temp = new Money();
-            if (userSum <= _sum)
+            var temp = new Money();
+            if (userSum <= Sum)
             {
-                Dictionary<Banknote, int> tempMoney = new Dictionary<Banknote, int>(_money.Banknotes);
-                foreach (KeyValuePair<Banknote, int> item in tempMoney)
+                var tempMoney = new Dictionary<Banknote, int>(_money.Banknotes);
+                foreach (var item in tempMoney)
                 {
-                    while (userSum >= item.Key.nominal && _money.Banknotes[item.Key] != 0)
+                    while (userSum >= item.Key.Nominal && _money.Banknotes[item.Key] != 0)
                     {
-                        userSum -= item.Key.nominal;
-                        _sum -= item.Key.nominal;
+                        userSum -= item.Key.Nominal;
+                        Sum -= item.Key.Nominal;
                         if (!temp.Banknotes.ContainsKey(item.Key))
                         {
                             temp.Banknotes.Add(item.Key, 0);
@@ -62,14 +47,16 @@ namespace ATM
                             temp.Banknotes[item.Key]++;
                         }
 
-                        if (item.Value != 0) _money.Banknotes[item.Key]--;
+                        if (item.Value != 0)
+                        {
+                            _money.Banknotes[item.Key]--;
+                        }
                     }
                 }
 
                 //Записывает текущее состояние денег в файл
-               this._moneyUploader = new MoneyUploader(_path);
-               this._moneyUploader.UploadMoney(this._money);
-
+                _moneyUploader = new MoneyUploader(_path);
+                _moneyUploader.UploadMoney(_money);
             }
 
             return temp;
@@ -77,12 +64,12 @@ namespace ATM
 
         public string Status()
         {
-            StringBuilder temp = new StringBuilder();
-            foreach (KeyValuePair<Banknote, int> item in this._money.Banknotes)
+            var temp = new StringBuilder();
+            foreach (var item in _money.Banknotes)
             {
-                temp.Append("Купюра:" + item.Key.nominal + " <-> Количество: " + item.Value + '\n');
+                temp.Append("Купюра:" + item.Key.Nominal + " <-> Количество: " + item.Value + '\n');
             }
-            temp.Append("Остаток: " + _sum);
+            temp.Append("Остаток: " + Sum);
             return temp.ToString();
         }
     }
