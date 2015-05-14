@@ -4,7 +4,7 @@ using System.IO;
 
 namespace ATM
 {
-    class MoneyWriterTxt: IMoneyWriter
+    public class MoneyWriterTxt: IMoneyWriter
     {
         private readonly string _path;
 

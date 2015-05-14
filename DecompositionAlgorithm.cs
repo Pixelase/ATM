@@ -2,7 +2,7 @@
 
 namespace ATM
 {
-    internal class DecompositionAlgorithm
+    public class DecompositionAlgorithm
     {
         public Money Decompose(decimal requestedSum, ref decimal currentSum, ref Money money)
         {

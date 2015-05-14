@@ -2,7 +2,7 @@
 
 namespace ATM
 {
-    interface IMoneyWriter
+    public interface IMoneyWriter
     {
         void WriteMoney(Money money);
     }

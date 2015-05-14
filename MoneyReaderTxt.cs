@@ -3,7 +3,7 @@ using System.IO;
 
 namespace ATM
 {
-    internal class MoneyReaderTxt: IMoneyReader
+    public class MoneyReaderTxt: IMoneyReader
     {
         private readonly string _path;
 

@@ -2,7 +2,7 @@
 
 namespace ATM
 {
-    internal class CashMachine
+    public class CashMachine
     {
         public decimal Sum
         {

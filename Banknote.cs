@@ -2,7 +2,7 @@
 
 namespace ATM
 {
-    internal class Banknote: IComparable<Banknote>
+    public class Banknote: IComparable<Banknote>
     {
         public Banknote(int nominal)
         {

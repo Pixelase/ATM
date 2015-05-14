@@ -2,7 +2,7 @@
 
 namespace ATM
 {
-    internal class Money
+    public class Money
     {
         public SortedList<Banknote, int> Banknotes { get; set; }
 

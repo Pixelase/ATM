@@ -1,6 +1,6 @@
 ﻿namespace ATM
 {
-    interface IMoneyReader
+    public interface IMoneyReader
     {
         Money ReadMoney();
     }
