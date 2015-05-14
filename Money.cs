@@ -4,11 +4,11 @@ namespace ATM
 {
     internal class Money
     {
-        public Dictionary<Banknote, int> Banknotes { get; set; }
+        public SortedList<Banknote, int> Banknotes { get; set; }
 
         public Money()
         {
-            Banknotes = new Dictionary<Banknote, int>();
+            Banknotes = new SortedList<Banknote, int>(new DescendingComparer<Banknote>());
         }
 
         public void Add(int banknoteNomimal, int banknotesCount)

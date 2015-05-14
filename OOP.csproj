@@ -32,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>.\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,14 +46,20 @@
   <ItemGroup>
     <Compile Include="CashMachine.cs" />
     <Compile Include="Banknote.cs" />
+    <Compile Include="DecompositionAlgorithm.cs" />
+    <Compile Include="DescendingComparer.cs" />
+    <Compile Include="IMoneyReader.cs" />
+    <Compile Include="IMoneyWriter.cs" />
     <Compile Include="Money.cs" />
-    <Compile Include="MoneyLoader.cs" />
-    <Compile Include="MoneyUploader.cs" />
+    <Compile Include="MoneyReaderTxt.cs" />
+    <Compile Include="MoneyWriterTxt.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

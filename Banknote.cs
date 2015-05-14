@@ -1,6 +1,8 @@
-﻿namespace ATM
+﻿using System;
+
+namespace ATM
 {
-    internal class Banknote
+    internal class Banknote: IComparable<Banknote>
     {
         public Banknote(int nominal)
         {
@@ -8,5 +10,15 @@
         }
 
         public int Nominal { get; set; }
+
+        public int CompareTo(Banknote other)
+        {
+            if (other == null) return 0;
+            if (Nominal > other.Nominal)
+                return 1;
+            if (Nominal < other.Nominal)
+                return -1;
+            return 0;
+        }
     }
 }

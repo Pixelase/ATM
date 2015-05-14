@@ -4,16 +4,16 @@ using System.IO;
 
 namespace ATM
 {
-    class MoneyUploader
+    class MoneyWriterTxt: IMoneyWriter
     {
         private readonly string _path;
 
-        public MoneyUploader(string path)
+        public MoneyWriterTxt(string path)
         {
             _path = path;
         }
 
-        public void UploadMoney(Money money)
+        public void WriteMoney(Money money)
         {
             if (File.Exists(_path))
             {

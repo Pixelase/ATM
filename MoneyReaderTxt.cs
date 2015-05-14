@@ -3,16 +3,16 @@ using System.IO;
 
 namespace ATM
 {
-    internal class MoneyLoader
+    internal class MoneyReaderTxt: IMoneyReader
     {
         private readonly string _path;
 
-        public MoneyLoader(string path)
+        public MoneyReaderTxt(string path)
         {
             _path = path;
         }
 
-        public Money LoadMoney()
+        public Money ReadMoney()
         {
             var money = new Money();
             if (File.Exists(_path))
