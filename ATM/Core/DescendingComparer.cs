@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ATM
+namespace ATM.Core
 {
     public class DescendingComparer<T> : IComparer<T> where T : IComparable<T>
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace ATM
+namespace ATM.Core
 {
     public class DecompositionAlgorithm
     {

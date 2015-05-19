@@ -1,10 +1,9 @@
-﻿namespace ATM
+﻿namespace ATM.Core
 {
     public enum State
     {
-        CombinationFailed,
         MoneyDeficiency,
-        FormatError,
+        ParseError,
         Ok
     }
 }

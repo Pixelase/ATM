@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using ATM.Core;
 
-namespace ATM
+namespace ATM.Output
 {
     public class MoneyWriterTxt: IMoneyWriter
     {

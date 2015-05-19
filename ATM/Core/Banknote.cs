@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ATM
+namespace ATM.Core
 {
     public class Banknote: IComparable<Banknote>
     {

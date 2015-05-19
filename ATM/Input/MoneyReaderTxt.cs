@@ -1,7 +1,8 @@
-п»їusing System;
+using System;
 using System.IO;
+using ATM.Core;
 
-namespace ATM
+namespace ATM.Input
 {
     public class MoneyReaderTxt: IMoneyReader
     {
@@ -35,12 +36,12 @@ namespace ATM
 
                 catch (FileLoadException)
                 {
-                    Console.WriteLine("РќРµРІРѕР·РјРѕР¶РЅРѕ СЃС‡РёС‚Р°С‚СЊ РєР°СЃСЃРµС‚Сѓ СЃ РґРµРЅСЊРіР°РјРё:\n");
+                    Console.WriteLine("Невозможно считать кассету с деньгами:\n");
                 }
 
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Р§С‚Рѕ-С‚Рѕ РїРѕС€Р»Рѕ РЅРµ С‚Р°Рє:\n" + ex.Message);
+                    Console.WriteLine("Что-то пошло не так:\n" + ex.Message);
                 }
 
                 finally

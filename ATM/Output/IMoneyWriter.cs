@@ -1,6 +1,6 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using ATM.Core;
 
-namespace ATM
+namespace ATM.Output
 {
     public interface IMoneyWriter
     {

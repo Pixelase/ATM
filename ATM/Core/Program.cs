@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ATM
+namespace ATM.Core
 {
     internal class Program
     {

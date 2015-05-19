@@ -1,6 +1,8 @@
 ﻿using System.Text;
+using ATM.Input;
+using ATM.Output;
 
-namespace ATM
+namespace ATM.Core
 {
     public class CashMachine
     {

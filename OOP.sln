@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console User Interface", "Console User Interface\Console User Interface.csproj", "{7EC5C84C-A27C-4A46-8E82-2EB558C899F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphic User Interface", "Graphic User Interface\Graphic User Interface.csproj", "{61DCB9DA-C5F5-4FFB-8DEE-76A69D877048}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM", "ATM\ATM.csproj", "{FDBA9056-A733-4F92-8535-D20CE207F943}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7EC5C84C-A27C-4A46-8E82-2EB558C899F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EC5C84C-A27C-4A46-8E82-2EB558C899F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EC5C84C-A27C-4A46-8E82-2EB558C899F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EC5C84C-A27C-4A46-8E82-2EB558C899F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61DCB9DA-C5F5-4FFB-8DEE-76A69D877048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61DCB9DA-C5F5-4FFB-8DEE-76A69D877048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61DCB9DA-C5F5-4FFB-8DEE-76A69D877048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61DCB9DA-C5F5-4FFB-8DEE-76A69D877048}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDBA9056-A733-4F92-8535-D20CE207F943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDBA9056-A733-4F92-8535-D20CE207F943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDBA9056-A733-4F92-8535-D20CE207F943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDBA9056-A733-4F92-8535-D20CE207F943}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
