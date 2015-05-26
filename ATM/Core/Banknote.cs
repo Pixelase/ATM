@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace ATM.Core
 {
+    [DataContract]
     public class Banknote: IComparable<Banknote>
     {
         public Banknote(int nominal)
@@ -9,6 +11,7 @@ namespace ATM.Core
             Nominal = nominal;
         }
 
+        [DataMember]
         public int Nominal { get; set; }
 
         public int CompareTo(Banknote other)

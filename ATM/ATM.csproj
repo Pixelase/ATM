@@ -38,8 +38,12 @@
     <Reference Include="log4net">
       <HintPath>.\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="ServiceStack.Text">
+      <HintPath>..\packages\ServiceStack.Text.4.0.40\lib\net40\ServiceStack.Text.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,12 +56,18 @@
     <Compile Include="Core\DecompositionAlgorithm.cs" />
     <Compile Include="Core\DescendingComparer.cs" />
     <Compile Include="Input\IMoneyReader.cs" />
+    <Compile Include="Input\MoneyReaderCsv.cs" />
+    <Compile Include="Input\MoneyReaderJson.cs" />
+    <Compile Include="Input\MoneyReaderXml.cs" />
     <Compile Include="Language\LanguageConfig.cs" />
     <Compile Include="Output\IMoneyWriter.cs" />
     <Compile Include="Core\Money.cs" />
     <Compile Include="Input\MoneyReaderTxt.cs" />
+    <Compile Include="Output\MoneyWriterCsv.cs" />
+    <Compile Include="Output\MoneyWriterJson.cs" />
     <Compile Include="Output\MoneyWriterTxt.cs" />
     <Compile Include="Core\AlgorithmStates.cs" />
+    <Compile Include="Output\MoneyWriterXml.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
@@ -65,6 +75,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\langres.en-US.resx" />
     <EmbeddedResource Include="Resources\langres.ru-RU.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

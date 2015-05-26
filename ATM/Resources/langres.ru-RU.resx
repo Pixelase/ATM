@@ -117,22 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="askForMoney" xml:space="preserve">
+  <data name="AskForMoney" xml:space="preserve">
     <value>Введите сумму или "выход" для выхода</value>
   </data>
   <data name="InvalidData" xml:space="preserve">
-    <value>Ошибка запроса.  Проверьте введенные данные и повторите ввод</value>
+    <value>База данных повреждена</value>
   </data>
   <data name="NotEnoughMoney" xml:space="preserve">
-    <value>Недосточно денег в банкомате</value>
+    <value>Недосточно средств</value>
   </data>
-  <data name="ImposibleToCollectSum" xml:space="preserve">
-    <value>Невозможно собрать заданную сумму</value>
+  <data name="IncorrectInput" xml:space="preserve">
+    <value>Некорректный ввод</value>
   </data>
-  <data name="TooManyBills" xml:space="preserve">
-    <value>Слишком много купюр для вывода</value>
+  <data name="Sum" xml:space="preserve">
+    <value>Сумма</value>
   </data>
   <data name="Exit" xml:space="preserve">
     <value>выход</value>
+  </data>
+  <data name="Banknote" xml:space="preserve">
+    <value>Купюра</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>Количество</value>
+  </data>
+  <data name="YourMoney" xml:space="preserve">
+    <value>Ваши деньги</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Состояние счёта</value>
   </data>
 </root>

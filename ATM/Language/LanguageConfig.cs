@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Reflection;
 using System.Resources;
 using log4net;
@@ -8,15 +9,18 @@ namespace ATM.Language
 {
     public class LanguageConfig
     {
-
         public string AskForMoney { get; set; }
+        public string Banknote { get; set; }
         public string InvalidData { get; set; }
         public string NotEnoughMoney { get; set; }
-        public string ImposibleToCollectSum { get; set; }
-        public string TooManyBills { get; set; }
+        public string IncorrectInput { get; set; }
+        public string Number { get; set; }
         public string Exit { get; set; }
+        public string Sum { get; set; }
+        public string YourMoney { get; set; }
+        public string Status { get; set; }
 
-        private static readonly ILog Log = LogManager.GetLogger(typeof(LanguageConfig));
+        private static readonly ILog Log = LogManager.GetLogger(typeof (LanguageConfig));
 
 
         public LanguageConfig(string culture)
@@ -24,20 +28,28 @@ namespace ATM.Language
             XmlConfigurator.Configure();
             try
             {
-                Assembly assemblyAtm = Assembly.Load("ATM");
-                ResourceManager rm = new ResourceManager("ATM.Resources.langres", assemblyAtm);
-                CultureInfo ci = new CultureInfo(culture);
+                var assemblyAtm = Assembly.Load("ATM");
+                var rm = new ResourceManager("ATM.Resources.langres", assemblyAtm);
+                var ci = new CultureInfo(culture);
 
-                AskForMoney = rm.GetString("askForMoney", ci);
-                ImposibleToCollectSum = rm.GetString("ImposibleToCollectSum", ci);
+                AskForMoney = rm.GetString("AskForMoney", ci);
+                Banknote = rm.GetString("Banknote", ci);
+                IncorrectInput = rm.GetString("IncorrectInput", ci);
                 InvalidData = rm.GetString("InvalidData", ci);
                 NotEnoughMoney = rm.GetString("NotEnoughMoney", ci);
-                TooManyBills = rm.GetString("TooManyBills", ci);
+                Number = rm.GetString("Number", ci);
+                YourMoney = rm.GetString("YourMoney", ci);
                 Exit = rm.GetString("Exit", ci);
+                Sum = rm.GetString("Sum", ci);
+                Status = rm.GetString("Status", ci);
             }
             catch (CultureNotFoundException ex)
             {
                 Log.Error("Incorrect culture setup: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Something goes wrong: " + ex.Message);
             }
         }
     }

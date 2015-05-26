@@ -1,11 +1,15 @@
 ﻿using System.Text;
 using ATM.Core;
 using ATM.Input;
+using ATM.Language;
 using ATM.Output;
 using log4net.Config;
 
 namespace ATM
 {
+    /// <summary>
+    /// Библиотека - эмулятор банкомата
+    /// </summary>
     public class CashMachine
     {
         public decimal Sum
@@ -43,14 +47,15 @@ namespace ATM
 
         public string Status()
         {
+            var lang = new LanguageConfig("en-US");
             var temp = new StringBuilder();
 
             foreach (var item in _money.Banknotes)
             {
-                temp.Append("Купюра:" + item.Key.Nominal + " <-> Количество: " + item.Value + '\n');
+                temp.Append(lang.Banknote  + ": " + item.Key.Nominal + " <-> " + lang.Number + ": " + item.Value + '\n');
             }
 
-            temp.Append("Остаток: " + _sum);
+            temp.Append(lang.Sum + ": " + _sum);
             return temp.ToString();
         }
     }

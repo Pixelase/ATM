@@ -1,5 +1,6 @@
 ﻿using System;
 using ATM;
+using ATM.Language;
 
 namespace Console_User_Interface
 {
@@ -7,32 +8,43 @@ namespace Console_User_Interface
     {
         private static void Main(string[] args)
         {
-            var atm = new CashMachine(@"D:\Visual Studio\OOP\ATM\bin\Debug\data.txt");
-            Console.WriteLine("Состояние счёта:");
-            Console.WriteLine(atm.Status() + '\n');
+            var path = @"D:\Visual Studio\OOP\ATM\bin\Debug\data.txt";
+            var cashMachine = new CashMachine(path);
 
-            while (atm.Sum != 0)
+            var lang = new LanguageConfig("en-US");
+
+            Console.WriteLine(lang.Status + ":");
+            Console.WriteLine(cashMachine.Status() + '\n');
+
+            while (cashMachine.Sum != 0)
             {
-                Console.WriteLine("Введите нужную сумму:");
-                int userMoney;
-                int.TryParse(Console.ReadLine(), out userMoney);
-                while (userMoney > atm.Sum || userMoney <= 0)
+                Console.Write(lang.AskForMoney + ": ");
+                decimal userMoney;
+                decimal.TryParse(Console.ReadLine(), out userMoney);
+                while (userMoney > cashMachine.Sum || userMoney <= 0)
                 {
-                    if (userMoney > atm.Sum || userMoney <= 0)
+                    if (userMoney > cashMachine.Sum || userMoney <= 0)
                     {
-                        Console.WriteLine("Некорректный ввод\n\n" + "Введите нужную сумму:");
-                        int.TryParse(Console.ReadLine(), out userMoney);
+                        if (userMoney > cashMachine.Sum)
+                        {
+                            Console.Write(lang.NotEnoughMoney + "\n\n" + lang.AskForMoney + ": ");
+                        }
+                        else
+                        {
+                            Console.Write(lang.IncorrectInput + "\n\n" + lang.AskForMoney + ": ");
+                        }
+                        decimal.TryParse(Console.ReadLine(), out userMoney);
                     }
                 }
 
-                Console.WriteLine("Ваши деньги:");
-                foreach (var item in atm.WithdrawMoney(userMoney).Banknotes)
+                Console.WriteLine('\n' + lang.YourMoney + ":");
+                foreach (var item in cashMachine.WithdrawMoney(userMoney).Banknotes)
                 {
-                    Console.WriteLine("Купюра:" + item.Key.Nominal + " <-> Количество: " + item.Value);
+                    Console.WriteLine(lang.Banknote + ":" + item.Key.Nominal + " <-> " + lang.Number + ": " + item.Value);
                 }
 
-                Console.WriteLine("\nСостояние счёта:");
-                Console.WriteLine(atm.Status() + '\n');
+                Console.WriteLine('\n' + lang.Status + ':');
+                Console.WriteLine(cashMachine.Status() + '\n');
             }
 
             Console.ReadKey();
