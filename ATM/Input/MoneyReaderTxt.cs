@@ -1,10 +1,9 @@
-using System;
 using System.IO;
 using ATM.Core;
 
 namespace ATM.Input
 {
-    public class MoneyReaderTxt: IMoneyReader
+    public class MoneyReaderTxt : IMoneyReader
     {
         private readonly string _path;
 
@@ -18,8 +17,7 @@ namespace ATM.Input
             var money = new Money();
             if (File.Exists(_path))
             {
-                var sr = new StreamReader(_path);
-                try
+                using (var sr = new StreamReader(_path))
                 {
                     while (!sr.EndOfStream)
                     {
@@ -32,21 +30,6 @@ namespace ATM.Input
                             money.Add(banknoteNomimal, banknotesCount);
                         }
                     }
-                }
-
-                catch (FileLoadException)
-                {
-                    Console.WriteLine("Невозможно считать кассету с деньгами:\n");
-                }
-
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Что-то пошло не так:\n" + ex.Message);
-                }
-
-                finally
-                {
-                    sr.Close();
                 }
             }
 

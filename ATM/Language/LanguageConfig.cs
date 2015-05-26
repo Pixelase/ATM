@@ -7,22 +7,17 @@ using log4net.Config;
 
 namespace ATM.Language
 {
+    /// <summary>
+    ///     Класс для локализации банкомата
+    /// </summary>
     public class LanguageConfig
     {
-        public string AskForMoney { get; set; }
-        public string Banknote { get; set; }
-        public string InvalidData { get; set; }
-        public string NotEnoughMoney { get; set; }
-        public string IncorrectInput { get; set; }
-        public string Number { get; set; }
-        public string Exit { get; set; }
-        public string Sum { get; set; }
-        public string YourMoney { get; set; }
-        public string Status { get; set; }
-
         private static readonly ILog Log = LogManager.GetLogger(typeof (LanguageConfig));
 
-
+        /// <summary>
+        ///     Конструктор
+        /// </summary>
+        /// <param name="culture">Язык</param>
         public LanguageConfig(string culture)
         {
             XmlConfigurator.Configure();
@@ -52,5 +47,16 @@ namespace ATM.Language
                 Log.Error("Something goes wrong: " + ex.Message);
             }
         }
+
+        public string AskForMoney { get; set; }
+        public string Banknote { get; set; }
+        public string InvalidData { get; set; }
+        public string NotEnoughMoney { get; set; }
+        public string IncorrectInput { get; set; }
+        public string Number { get; set; }
+        public string Exit { get; set; }
+        public string Sum { get; set; }
+        public string YourMoney { get; set; }
+        public string Status { get; set; }
     }
 }
