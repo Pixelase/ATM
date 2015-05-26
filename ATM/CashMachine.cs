@@ -1,8 +1,10 @@
 ﻿using System.Text;
+using ATM.Core;
 using ATM.Input;
 using ATM.Output;
+using log4net.Config;
 
-namespace ATM.Core
+namespace ATM
 {
     public class CashMachine
     {
@@ -18,6 +20,7 @@ namespace ATM.Core
 
         public CashMachine(string path)
         {
+            XmlConfigurator.Configure();
             _path = path;
             var moneyReader = new MoneyReaderTxt(path);
             _money = moneyReader.ReadMoney();
@@ -31,7 +34,6 @@ namespace ATM.Core
 
         public Money WithdrawMoney(decimal requestedSum)
         {
-            //Записываем текущее состояние денег в файл
             var moneyWriter = new MoneyWriterTxt(_path);
             var decompositionAlgorithm = new DecompositionAlgorithm();
             var outputedMoney = decompositionAlgorithm.Decompose(requestedSum, ref _sum, ref _money);
@@ -42,10 +44,12 @@ namespace ATM.Core
         public string Status()
         {
             var temp = new StringBuilder();
+
             foreach (var item in _money.Banknotes)
             {
                 temp.Append("Купюра:" + item.Key.Nominal + " <-> Количество: " + item.Value + '\n');
             }
+
             temp.Append("Остаток: " + _sum);
             return temp.ToString();
         }

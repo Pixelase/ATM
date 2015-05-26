@@ -47,24 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\CashMachine.cs" />
+    <Compile Include="CashMachine.cs" />
     <Compile Include="Core\Banknote.cs" />
     <Compile Include="Core\DecompositionAlgorithm.cs" />
     <Compile Include="Core\DescendingComparer.cs" />
     <Compile Include="Input\IMoneyReader.cs" />
+    <Compile Include="Language\LanguageConfig.cs" />
     <Compile Include="Output\IMoneyWriter.cs" />
     <Compile Include="Core\Money.cs" />
     <Compile Include="Input\MoneyReaderTxt.cs" />
     <Compile Include="Output\MoneyWriterTxt.cs" />
-    <Compile Include="Core\State.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
+    <Compile Include="Core\AlgorithmStates.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\langres.en-US.resx" />
+    <EmbeddedResource Include="Resources\langres.ru-RU.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,5 +1,5 @@
 ﻿using System;
-using ATM.Core;
+using ATM;
 
 namespace Console_User_Interface
 {
@@ -7,9 +7,7 @@ namespace Console_User_Interface
     {
         private static void Main(string[] args)
         {
-            if (args == null) throw new ArgumentNullException("args");
-            var atm = new CashMachine(@"data.txt");
-
+            var atm = new CashMachine(@"D:\Visual Studio\OOP\ATM\bin\Debug\data.txt");
             Console.WriteLine("Состояние счёта:");
             Console.WriteLine(atm.Status() + '\n');
 
