@@ -13,7 +13,7 @@ namespace Console_User_Interface
 
         private static void Main(string[] args)
         {
-            var path = @"D:\Visual Studio\OOP\ATM\bin\Debug\data.txt";
+            var path = @"D:\Visual Studio\OOP\ATM\bin\Debug\data.csv";
             var cashMachine = new CashMachine(path);
             Log.Debug("CashMashine started");
 
