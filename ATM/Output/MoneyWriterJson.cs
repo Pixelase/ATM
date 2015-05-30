@@ -15,7 +15,7 @@ namespace ATM.Output
 
         public void WriteMoney(Money money)
         {
-            Stream stream = new FileStream(_path, FileMode.OpenOrCreate);
+            Stream stream = new FileStream(_path, FileMode.Create);
             var ds = new DataContractJsonSerializer(typeof(Money), new DataContractJsonSerializerSettings());
 
             ds.WriteObject(stream, money);

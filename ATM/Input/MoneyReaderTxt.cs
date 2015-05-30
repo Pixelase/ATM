@@ -1,11 +1,15 @@
+using System;
 using System.IO;
 using ATM.Core;
+using log4net;
 
 namespace ATM.Input
 {
     public class MoneyReaderTxt : IMoneyReader
     {
         private readonly string _path;
+
+        public static readonly ILog Log = LogManager.GetLogger(typeof(MoneyReaderTxt));
 
         public MoneyReaderTxt(string path)
         {
@@ -24,10 +28,17 @@ namespace ATM.Input
                         var readLine = sr.ReadLine();
                         if (readLine != null)
                         {
-                            var temp = readLine.Split(' ');
-                            var banknoteNomimal = int.Parse(temp[0]);
-                            var banknotesCount = int.Parse(temp[1]);
-                            money.Add(banknoteNomimal, banknotesCount);
+                            try
+                            {
+                                var temp = readLine.Split(' ');
+                                var banknoteNomimal = int.Parse(temp[0]);
+                                var banknotesCount = int.Parse(temp[1]);
+                                money.Add(banknoteNomimal, banknotesCount);
+                            }
+                            catch (Exception e)
+                            {
+                                Log.Error("Parse error: " + e.Message);
+                            }
                         }
                     }
                 }

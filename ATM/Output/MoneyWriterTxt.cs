@@ -5,7 +5,7 @@ using ATM.Core;
 
 namespace ATM.Output
 {
-    public class MoneyWriterTxt: IMoneyWriter
+    public class MoneyWriterTxt : IMoneyWriter
     {
         private readonly string _path;
 

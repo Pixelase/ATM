@@ -15,6 +15,7 @@ namespace Console_User_Interface
         {
             var path = @"D:\Visual Studio\OOP\ATM\bin\Debug\data.txt";
             var cashMachine = new CashMachine(path);
+            Log.Debug("CashMashine started");
 
             var lang = new LanguageConfig("en-US");
             XmlConfigurator.Configure();
@@ -29,7 +30,11 @@ namespace Console_User_Interface
                 string request = Console.ReadLine();
                 Log.Debug("Users request: " + request);
 
-                if(request != null && request.ToLower() == lang.Exit) return;
+                if (request != null && request.ToLower() == lang.Exit)
+                {
+                    Log.Debug("CashMashine finished");
+                    return;
+                }
                 
                 decimal userMoney;
                 decimal.TryParse(request, out userMoney);

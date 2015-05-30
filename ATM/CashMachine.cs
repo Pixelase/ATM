@@ -33,7 +33,6 @@ namespace ATM
         /// <param name="path">Путь к файлу</param>
         public CashMachine(string path)
         {
-            Log.Debug("CashMashine started");
             XmlConfigurator.Configure();
             _path = path;
             try
@@ -102,9 +101,13 @@ namespace ATM
             var lang = new LanguageConfig("en-US");
             var temp = new StringBuilder();
 
-            foreach (var item in _money.Banknotes)
+            if (_money != null && _money.Banknotes != null)
             {
-                temp.Append(lang.Banknote + ": " + item.Key.Nominal + " <-> " + lang.Number + ": " + item.Value + '\n');
+                foreach (var item in _money.Banknotes)
+                {
+                    temp.Append(lang.Banknote + ": " + item.Key.Nominal + " <-> " + lang.Number + ": " + item.Value +
+                                '\n');
+                }
             }
 
             temp.Append(lang.Sum + ": " + _sum);

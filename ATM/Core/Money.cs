@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ATM.Core
-{   
+{
     public class Money
     {
         public SortedList<Banknote, int> Banknotes { get; set; }
