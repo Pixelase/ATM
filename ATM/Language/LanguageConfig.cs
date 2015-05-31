@@ -12,7 +12,31 @@ namespace ATM.Language
     /// </summary>
     public class LanguageConfig
     {
-        private static readonly ILog Log = LogManager.GetLogger(typeof (LanguageConfig));
+        private static readonly ILog Log = LogManager.GetLogger(typeof(LanguageConfig));
+
+        public readonly string AskForMoney;
+        public readonly string Banknote;
+        public readonly string InvalidData;
+        public readonly string NotEnoughMoney;
+        public readonly string IncorrectInput;
+        public readonly string Number;
+        public readonly string ExitCommand;
+        public readonly string Sum;
+        public readonly string YourMoney;
+        public readonly string Status;
+        public readonly string InsertCassettes;
+        public readonly string RemoveCassettes;
+        public readonly string InsertCommand;
+        public readonly string RemoveCommand;
+        public readonly string Help;
+        public readonly string HelpCommand;
+        public readonly string StatsCommand;
+        public readonly string Statistics;
+        public readonly string AllCommands;
+        public readonly string Exit;
+        public readonly string Clear;
+        public readonly string ClearCommand;
+        public readonly string StatusCommand;
 
         /// <summary>
         ///     Конструктор
@@ -34,9 +58,22 @@ namespace ATM.Language
                 NotEnoughMoney = rm.GetString("NotEnoughMoney", ci);
                 Number = rm.GetString("Number", ci);
                 YourMoney = rm.GetString("YourMoney", ci);
-                Exit = rm.GetString("Exit", ci);
+                ExitCommand = rm.GetString("ExitCommand", ci);
                 Sum = rm.GetString("Sum", ci);
                 Status = rm.GetString("Status", ci);
+                InsertCassettes = rm.GetString("InsertCassettes", ci);
+                RemoveCassettes = rm.GetString("RemoveCassettes", ci);
+                InsertCommand = rm.GetString("InsertCommand", ci);
+                RemoveCommand = rm.GetString("RemoveCommand", ci);
+                Help = rm.GetString("Help", ci);
+                HelpCommand = rm.GetString("HelpCommand", ci);
+                StatsCommand = rm.GetString("StatsCommand", ci);
+                Statistics = rm.GetString("Statistics", ci);
+                AllCommands = rm.GetString("AllCommands", ci);
+                Exit = rm.GetString("Exit", ci);
+                Clear = rm.GetString("Clear", ci);
+                ClearCommand = rm.GetString("ClearCommand", ci);
+                StatusCommand = rm.GetString("StatusCommand", ci);
             }
             catch (CultureNotFoundException ex)
             {
@@ -47,16 +84,5 @@ namespace ATM.Language
                 Log.Error("Something goes wrong: " + ex.Message);
             }
         }
-
-        public string AskForMoney { get; set; }
-        public string Banknote { get; set; }
-        public string InvalidData { get; set; }
-        public string NotEnoughMoney { get; set; }
-        public string IncorrectInput { get; set; }
-        public string Number { get; set; }
-        public string Exit { get; set; }
-        public string Sum { get; set; }
-        public string YourMoney { get; set; }
-        public string Status { get; set; }
     }
 }

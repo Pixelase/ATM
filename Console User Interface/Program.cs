@@ -6,67 +6,57 @@ using log4net.Config;
 
 namespace Console_User_Interface
 {
-
     internal class Program
     {
-        public static readonly ILog Log = LogManager.GetLogger(typeof(Program));
+        public static readonly ILog Log = LogManager.GetLogger(typeof (Program));
 
         private static void Main(string[] args)
         {
-            var path = @"D:\Visual Studio\OOP\ATM\bin\Debug\data.csv";
+            var path = @"D:\Visual Studio\OOP\ATM\bin\Debug\data.json";
             var cashMachine = new CashMachine(path);
-            Log.Debug("CashMashine started");
-
             var lang = new LanguageConfig("en-US");
+            var commandPerformer = new CommandPerformer(cashMachine, lang);
+
             XmlConfigurator.Configure();
 
             Console.WriteLine(lang.Status + ":");
             Console.WriteLine(cashMachine.Status() + '\n');
 
-            while (cashMachine.Sum != 0)
+            while (true)
             {
                 Console.Write(lang.AskForMoney + ": ");
 
-                string request = Console.ReadLine();
+                var request = Console.ReadLine();
                 Log.Debug("Users request: " + request);
 
-                if (request != null && request.ToLower() == lang.Exit)
+                decimal userMoney = 0;
+                var isCommand = request != null && commandPerformer.TryPerform(request.Trim().ToLower());
+                if (isCommand || decimal.TryParse(request, out userMoney))
                 {
-                    Log.Debug("CashMashine finished");
-                    return;
-                }
-                
-                decimal userMoney;
-                decimal.TryParse(request, out userMoney);
-                while (userMoney > cashMachine.Sum || userMoney <= 0)
-                {
-                    if (userMoney > cashMachine.Sum || userMoney <= 0)
+                    if (!isCommand && userMoney < cashMachine.Sum && userMoney >= 0)
                     {
-                        if (userMoney > cashMachine.Sum)
+                        Console.WriteLine('\n' + lang.YourMoney + ":");
+                        foreach (var item in cashMachine.WithdrawMoney(userMoney).Banknotes)
                         {
-                            Console.Write(lang.NotEnoughMoney + "\n\n" + lang.AskForMoney + ": ");
-                            Log.Error("Not enough money");
+                            Console.WriteLine(lang.Banknote + ":" + item.Key.Nominal + " <-> " + lang.Number + ": " +
+                                              item.Value);
                         }
-                        else
-                        {
-                            Console.Write(lang.IncorrectInput + "\n\n" + lang.AskForMoney + ": ");
-                            Log.Error("Incorrect input");
-                        }
-                        decimal.TryParse(Console.ReadLine(), out userMoney);
+
+                        Console.WriteLine('\n' + lang.Status + ':');
+                        Console.WriteLine(cashMachine.Status() + '\n');
+                    }
+                    else if (userMoney > cashMachine.Sum)
+                    {
+                        Console.Write('\n' + lang.NotEnoughMoney + "\n\n");
+                        Log.Error("Not enough money");
                     }
                 }
-
-                Console.WriteLine('\n' + lang.YourMoney + ":");
-                foreach (var item in cashMachine.WithdrawMoney(userMoney).Banknotes)
+                else
                 {
-                    Console.WriteLine(lang.Banknote + ":" + item.Key.Nominal + " <-> " + lang.Number + ": " + item.Value);
+                    Console.Write('\n' + lang.IncorrectInput + "\n\n");
+                    Log.Error("Incorrect input");
                 }
-
-                Console.WriteLine('\n' + lang.Status + ':');
-                Console.WriteLine(cashMachine.Status() + '\n');
             }
-
-            Console.ReadKey();
         }
     }
 }

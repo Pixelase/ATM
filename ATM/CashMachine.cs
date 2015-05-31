@@ -17,18 +17,11 @@ namespace ATM
     public class CashMachine
     {
         public static readonly ILog Log = LogManager.GetLogger(typeof (CashMachine));
-
-        public decimal Sum
-        {
-            get { return _sum; }
-            private set { _sum = value; }
-        }
-
         private Money _money;
-        private decimal _sum;
-        private string _path;
         private IMoneyReader _moneyReader;
         private IMoneyWriter _moneyWriter;
+        private string _path;
+        private decimal _sum;
 
         /// <summary>
         ///     Конструктор CashMachine
@@ -37,8 +30,15 @@ namespace ATM
         public CashMachine(string path)
         {
             XmlConfigurator.Configure();
+            Log.Debug("CashMashine session started");
             _path = path;
-            IncertCassettes(path);
+            TryInsertCassettes(path);
+        }
+
+        public decimal Sum
+        {
+            get { return _sum; }
+            private set { _sum = value; }
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace ATM
         ///     Функция, которая вставляет кассеты в банкомат
         /// </summary>
         /// <param name="path">Путь к файлу с кассетами</param>
-        public void IncertCassettes(string path)
+        public bool TryInsertCassettes(string path)
         {
             _path = path;
             DetectFileFormat();
@@ -106,9 +106,11 @@ namespace ATM
                 {
                     var banknoteNomimal = item.Key.Nominal;
                     var banknotesCount = item.Value;
-                    Sum += banknoteNomimal*banknotesCount;
+                    Sum += banknoteNomimal * banknotesCount;
                 }
                 Log.Debug("Сassettes have been successfully inserted");
+                return true;
+
             }
 
             catch (FileLoadException ex)
@@ -121,10 +123,17 @@ namespace ATM
                 Log.Error("Cassette not found");
             }
 
+            catch (NullReferenceException)
+            {
+                Log.Error("_moneyReader and _moneyWriter are not initialised");
+            }
+
             catch (Exception ex)
             {
                 Log.Error("An unexpected error :" + ex);
             }
+
+            return false;
         }
 
         /// <summary>
@@ -138,6 +147,9 @@ namespace ATM
             Log.Debug("Сassettes have been successfully removed");
         }
 
+        /// <summary>
+        ///     Функция, которая определяет формат файла с кассетами
+        /// </summary>
         private void DetectFileFormat()
         {
             var format = _path.Split('.').Last();
@@ -148,33 +160,47 @@ namespace ATM
                 {
                     _moneyReader = new MoneyReaderJson(_path);
                     _moneyWriter = new MoneyWriterJson(_path);
+                    Log.Debug("Casset format detected - json");
                     break;
                 }
                 case "txt":
                 {
                     _moneyReader = new MoneyReaderTxt(_path);
                     _moneyWriter = new MoneyWriterTxt(_path);
+                    Log.Debug("Casset format detected - txt");
                     break;
                 }
                 case "csv":
                 {
                     _moneyReader = new MoneyReaderCsv(_path);
                     _moneyWriter = new MoneyWriterCsv(_path);
+                    Log.Debug("Casset format detected - csv");
                     break;
                 }
                 case "xml":
                 {
                     _moneyReader = new MoneyReaderXml(_path);
                     _moneyWriter = new MoneyWriterXml(_path);
+                    Log.Debug("Casset format detected - xml");
                     break;
                 }
                 default:
                 {
+                    _moneyReader = null;
+                    _moneyWriter = null;
                     Log.Error("Unsupported file format");
                     break;
                 }
-                    
             }
+        }
+
+        /// <summary>
+        ///     Выход
+        /// </summary>
+        public void Exit()
+        {
+            Log.Debug("CashMashine session finished");
+            Environment.Exit(1);
         }
     }
 }

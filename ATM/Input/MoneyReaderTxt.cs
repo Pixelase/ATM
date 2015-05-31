@@ -7,9 +7,8 @@ namespace ATM.Input
 {
     public class MoneyReaderTxt : IMoneyReader
     {
+        public static readonly ILog Log = LogManager.GetLogger(typeof (MoneyReaderTxt));
         private readonly string _path;
-
-        public static readonly ILog Log = LogManager.GetLogger(typeof(MoneyReaderTxt));
 
         public MoneyReaderTxt(string path)
         {
@@ -19,26 +18,23 @@ namespace ATM.Input
         public Money ReadMoney()
         {
             var money = new Money();
-            if (File.Exists(_path))
+            using (var sr = new StreamReader(_path))
             {
-                using (var sr = new StreamReader(_path))
+                while (!sr.EndOfStream)
                 {
-                    while (!sr.EndOfStream)
+                    var readLine = sr.ReadLine();
+                    if (readLine != null)
                     {
-                        var readLine = sr.ReadLine();
-                        if (readLine != null)
+                        try
                         {
-                            try
-                            {
-                                var temp = readLine.Split(' ');
-                                var banknoteNomimal = int.Parse(temp[0]);
-                                var banknotesCount = int.Parse(temp[1]);
-                                money.Add(banknoteNomimal, banknotesCount);
-                            }
-                            catch (Exception e)
-                            {
-                                Log.Error("Parse error: " + e.Message);
-                            }
+                            var temp = readLine.Split(' ');
+                            var banknoteNomimal = int.Parse(temp[0]);
+                            var banknotesCount = int.Parse(temp[1]);
+                            money.Add(banknoteNomimal, banknotesCount);
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error("Parse error: " + e.Message);
                         }
                     }
                 }
