@@ -21,7 +21,7 @@ namespace ATM
         private IMoneyReader _moneyReader;
         private IMoneyWriter _moneyWriter;
         private string _path;
-        private decimal _sum;
+        private decimal _balance;
 
         /// <summary>
         ///     Конструктор CashMachine
@@ -35,10 +35,10 @@ namespace ATM
             TryInsertCassettes(path);
         }
 
-        public decimal Sum
+        public decimal Balance
         {
-            get { return _sum; }
-            private set { _sum = value; }
+            get { return _balance; }
+            private set { _balance = value; }
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace ATM
             Log.Debug("Withdraw operation running");
 
             var decompositionAlgorithm = new DecompositionAlgorithm();
-            var outputedMoney = decompositionAlgorithm.Decompose(requestedSum, ref _sum, ref _money);
+            var outputedMoney = decompositionAlgorithm.Decompose(requestedSum, ref _balance, ref _money);
 
             try
             {
@@ -86,12 +86,12 @@ namespace ATM
                 }
             }
 
-            temp.Append(lang.Sum + ": " + _sum);
+            temp.Append(lang.Balance + ": " + _balance);
             return temp.ToString();
         }
 
         /// <summary>
-        ///     Функция, которая вставляет кассеты в банкомат
+        ///     Функция для вставки кассет в банкомат
         /// </summary>
         /// <param name="path">Путь к файлу с кассетами</param>
         public bool TryInsertCassettes(string path)
@@ -106,7 +106,7 @@ namespace ATM
                 {
                     var banknoteNomimal = item.Key.Nominal;
                     var banknotesCount = item.Value;
-                    Sum += banknoteNomimal * banknotesCount;
+                    Balance += banknoteNomimal * banknotesCount;
                 }
                 Log.Debug("Сassettes have been successfully inserted");
                 return true;
@@ -142,7 +142,7 @@ namespace ATM
         public void RemoveCassettes()
         {
             _money.Banknotes.Clear();
-            _sum = 0;
+            _balance = 0;
             _path = string.Empty;
             Log.Debug("Сassettes have been successfully removed");
         }

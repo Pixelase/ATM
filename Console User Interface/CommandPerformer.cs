@@ -2,18 +2,25 @@
 using System.Linq;
 using ATM;
 using ATM.Language;
+using Statistics;
+using Statistics.Viewers;
 
 namespace Console_User_Interface
 {
+    /// <summary>
+    ///     Класс, для обработки консольных комманд
+    /// </summary>
     public class CommandPerformer : ICommandPerformer
     {
         private readonly CashMachine _cashMachine;
         private readonly LanguageConfig _lang;
+        private readonly StatsCounter _statsCounter;
 
-        public CommandPerformer(CashMachine cashMachine, LanguageConfig lang)
+        public CommandPerformer(CashMachine cashMachine, LanguageConfig lang, StatsCounter statsCounter)
         {
             _cashMachine = cashMachine;
             _lang = lang;
+            _statsCounter = statsCounter;
         }
 
         public bool TryPerform(string command)
@@ -48,7 +55,16 @@ namespace Console_User_Interface
 
             if (command == _lang.StatsCommand)
             {
-                Console.WriteLine('\n' + _lang.Statistics + "\n<--> Not implemented <-->\n");
+                if (_statsCounter.StatsEntries.Count != 0)
+                {
+                    Console.WriteLine("\n" + _lang.Date + ":                                " + _lang.Balance +
+                                      ":                    " + _lang.WithdrawnSum + ':');
+                    Console.WriteLine(new StatsStringViewer().Show(_statsCounter));
+                }
+                else
+                {
+                    Console.WriteLine('\n' + _lang.EmptyStats + '\n');
+                }
                 return true;
             }
 

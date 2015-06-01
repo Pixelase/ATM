@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphic User Interface", "G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM", "ATM\ATM.csproj", "{FDBA9056-A733-4F92-8535-D20CE207F943}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Statistics", "Statistics\Statistics.csproj", "{9838319A-18FD-4768-A0C6-C4DBCAD255D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{FDBA9056-A733-4F92-8535-D20CE207F943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDBA9056-A733-4F92-8535-D20CE207F943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDBA9056-A733-4F92-8535-D20CE207F943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9838319A-18FD-4768-A0C6-C4DBCAD255D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9838319A-18FD-4768-A0C6-C4DBCAD255D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9838319A-18FD-4768-A0C6-C4DBCAD255D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9838319A-18FD-4768-A0C6-C4DBCAD255D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

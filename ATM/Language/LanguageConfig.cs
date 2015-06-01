@@ -21,7 +21,7 @@ namespace ATM.Language
         public readonly string IncorrectInput;
         public readonly string Number;
         public readonly string ExitCommand;
-        public readonly string Sum;
+        public readonly string Balance;
         public readonly string YourMoney;
         public readonly string Status;
         public readonly string InsertCassettes;
@@ -37,9 +37,12 @@ namespace ATM.Language
         public readonly string Clear;
         public readonly string ClearCommand;
         public readonly string StatusCommand;
+        public readonly string Date;
+        public readonly string WithdrawnSum;
+        public readonly string EmptyStats;
 
         /// <summary>
-        ///     Конструктор
+        ///     Конструктор класса LanguageConfig
         /// </summary>
         /// <param name="culture">Язык</param>
         public LanguageConfig(string culture)
@@ -59,7 +62,7 @@ namespace ATM.Language
                 Number = rm.GetString("Number", ci);
                 YourMoney = rm.GetString("YourMoney", ci);
                 ExitCommand = rm.GetString("ExitCommand", ci);
-                Sum = rm.GetString("Sum", ci);
+                Balance = rm.GetString("Balance", ci);
                 Status = rm.GetString("Status", ci);
                 InsertCassettes = rm.GetString("InsertCassettes", ci);
                 RemoveCassettes = rm.GetString("RemoveCassettes", ci);
@@ -74,6 +77,9 @@ namespace ATM.Language
                 Clear = rm.GetString("Clear", ci);
                 ClearCommand = rm.GetString("ClearCommand", ci);
                 StatusCommand = rm.GetString("StatusCommand", ci);
+                Date = rm.GetString("Date", ci);
+                WithdrawnSum = rm.GetString("WithdrawnSum", ci);
+                EmptyStats = rm.GetString("EmptyStats", ci);
             }
             catch (CultureNotFoundException ex)
             {
