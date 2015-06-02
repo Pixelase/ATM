@@ -133,7 +133,7 @@
     <value>Сумма</value>
   </data>
   <data name="ExitCommand" xml:space="preserve">
-    <value>выход</value>
+    <value>exit</value>
   </data>
   <data name="Banknote" xml:space="preserve">
     <value>Купюра</value>
@@ -157,19 +157,19 @@
     <value>Вставить кассеты</value>
   </data>
   <data name="InsertCommand" xml:space="preserve">
-    <value>вставить</value>
+    <value>insert</value>
   </data>
   <data name="RemoveCassettes" xml:space="preserve">
     <value>Извлечь кассеты</value>
   </data>
   <data name="RemoveCommand" xml:space="preserve">
-    <value>извлечь</value>
+    <value>remove</value>
   </data>
   <data name="Statistics" xml:space="preserve">
     <value>Статистика текущей сессии</value>
   </data>
   <data name="StatsCommand" xml:space="preserve">
-    <value>статистика</value>
+    <value>stats</value>
   </data>
   <data name="AllCommands" xml:space="preserve">
     <value>Список имеющихся команд:</value>
@@ -181,10 +181,10 @@
     <value>Очистить окно консоли</value>
   </data>
   <data name="ClearCommand" xml:space="preserve">
-    <value>очистить</value>
+    <value>clear</value>
   </data>
   <data name="StatusCommand" xml:space="preserve">
-    <value>состояние</value>
+    <value>status</value>
   </data>
   <data name="Date" xml:space="preserve">
     <value>Дата</value>
