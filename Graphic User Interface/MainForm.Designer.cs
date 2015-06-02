@@ -42,10 +42,18 @@
             this.backspaceButton = new System.Windows.Forms.Button();
             this.button0 = new System.Windows.Forms.Button();
             this.enterButton = new System.Windows.Forms.Button();
-            this.buttonsGroupBox = new System.Windows.Forms.GroupBox();
+            this.inputButtonsGB = new System.Windows.Forms.GroupBox();
             this.displayLabel = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.buttonsGroupBox.SuspendLayout();
+            this.outputRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.insertButton = new System.Windows.Forms.Button();
+            this.removeButton = new System.Windows.Forms.Button();
+            this.cassetteButtonsGB = new System.Windows.Forms.GroupBox();
+            this.clearButton = new System.Windows.Forms.Button();
+            this.statsButton = new System.Windows.Forms.Button();
+            this.otherButtonsGB = new System.Windows.Forms.GroupBox();
+            this.inputButtonsGB.SuspendLayout();
+            this.cassetteButtonsGB.SuspendLayout();
+            this.otherButtonsGB.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -219,6 +227,7 @@
             this.backspaceButton.TabIndex = 10;
             this.backspaceButton.Text = "←";
             this.backspaceButton.UseVisualStyleBackColor = true;
+            this.backspaceButton.Click += new System.EventHandler(this.backspaceButton_Click);
             // 
             // button0
             // 
@@ -250,63 +259,154 @@
             this.enterButton.TabIndex = 12;
             this.enterButton.Text = "Enter";
             this.enterButton.UseVisualStyleBackColor = true;
+            this.enterButton.Click += new System.EventHandler(this.enterButton_Click);
             // 
-            // buttonsGroupBox
+            // inputButtonsGB
             // 
-            this.buttonsGroupBox.Controls.Add(this.backspaceButton);
-            this.buttonsGroupBox.Controls.Add(this.button0);
-            this.buttonsGroupBox.Controls.Add(this.enterButton);
-            this.buttonsGroupBox.Controls.Add(this.button1);
-            this.buttonsGroupBox.Controls.Add(this.button2);
-            this.buttonsGroupBox.Controls.Add(this.button3);
-            this.buttonsGroupBox.Controls.Add(this.button9);
-            this.buttonsGroupBox.Controls.Add(this.button4);
-            this.buttonsGroupBox.Controls.Add(this.button8);
-            this.buttonsGroupBox.Controls.Add(this.button5);
-            this.buttonsGroupBox.Controls.Add(this.button7);
-            this.buttonsGroupBox.Controls.Add(this.button6);
-            this.buttonsGroupBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.buttonsGroupBox.Location = new System.Drawing.Point(19, 61);
-            this.buttonsGroupBox.Name = "buttonsGroupBox";
-            this.buttonsGroupBox.Size = new System.Drawing.Size(254, 339);
-            this.buttonsGroupBox.TabIndex = 13;
-            this.buttonsGroupBox.TabStop = false;
+            this.inputButtonsGB.Controls.Add(this.backspaceButton);
+            this.inputButtonsGB.Controls.Add(this.button0);
+            this.inputButtonsGB.Controls.Add(this.enterButton);
+            this.inputButtonsGB.Controls.Add(this.button1);
+            this.inputButtonsGB.Controls.Add(this.button2);
+            this.inputButtonsGB.Controls.Add(this.button3);
+            this.inputButtonsGB.Controls.Add(this.button9);
+            this.inputButtonsGB.Controls.Add(this.button4);
+            this.inputButtonsGB.Controls.Add(this.button8);
+            this.inputButtonsGB.Controls.Add(this.button5);
+            this.inputButtonsGB.Controls.Add(this.button7);
+            this.inputButtonsGB.Controls.Add(this.button6);
+            this.inputButtonsGB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.inputButtonsGB.Location = new System.Drawing.Point(19, 61);
+            this.inputButtonsGB.Name = "inputButtonsGB";
+            this.inputButtonsGB.Size = new System.Drawing.Size(254, 339);
+            this.inputButtonsGB.TabIndex = 13;
+            this.inputButtonsGB.TabStop = false;
             // 
             // displayLabel
             // 
             this.displayLabel.AutoSize = true;
             this.displayLabel.Font = new System.Drawing.Font("Segoe UI Light", 20.29091F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.displayLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.displayLabel.Location = new System.Drawing.Point(422, 18);
+            this.displayLabel.Location = new System.Drawing.Point(426, 15);
             this.displayLabel.Name = "displayLabel";
-            this.displayLabel.Size = new System.Drawing.Size(109, 42);
+            this.displayLabel.Size = new System.Drawing.Size(117, 45);
             this.displayLabel.TabIndex = 14;
             this.displayLabel.Text = "Display";
             // 
-            // richTextBox1
+            // outputRichTextBox
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.richTextBox1.Location = new System.Drawing.Point(285, 73);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(378, 238);
-            this.richTextBox1.TabIndex = 15;
-            this.richTextBox1.Text = "";
+            this.outputRichTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.outputRichTextBox.Font = new System.Drawing.Font("Segoe UI", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.outputRichTextBox.ForeColor = System.Drawing.Color.SkyBlue;
+            this.outputRichTextBox.Location = new System.Drawing.Point(285, 69);
+            this.outputRichTextBox.Name = "outputRichTextBox";
+            this.outputRichTextBox.Size = new System.Drawing.Size(411, 233);
+            this.outputRichTextBox.TabIndex = 15;
+            this.outputRichTextBox.Text = "";
+            // 
+            // insertButton
+            // 
+            this.insertButton.FlatAppearance.BorderSize = 0;
+            this.insertButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.insertButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.insertButton.Font = new System.Drawing.Font("Segoe UI Semilight", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.insertButton.ForeColor = System.Drawing.Color.Black;
+            this.insertButton.Location = new System.Drawing.Point(6, 14);
+            this.insertButton.Name = "insertButton";
+            this.insertButton.Size = new System.Drawing.Size(92, 80);
+            this.insertButton.TabIndex = 13;
+            this.insertButton.Text = "Insert cassettes";
+            this.insertButton.UseVisualStyleBackColor = true;
+            this.insertButton.Click += new System.EventHandler(this.insertButton_Click);
+            // 
+            // removeButton
+            // 
+            this.removeButton.FlatAppearance.BorderSize = 0;
+            this.removeButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.removeButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.removeButton.Font = new System.Drawing.Font("Segoe UI Semilight", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.removeButton.ForeColor = System.Drawing.Color.Black;
+            this.removeButton.Location = new System.Drawing.Point(102, 14);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(92, 80);
+            this.removeButton.TabIndex = 16;
+            this.removeButton.Text = "Remove cassettes";
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.removeButton_Click);
+            // 
+            // cassetteButtonsGB
+            // 
+            this.cassetteButtonsGB.Controls.Add(this.removeButton);
+            this.cassetteButtonsGB.Controls.Add(this.insertButton);
+            this.cassetteButtonsGB.Location = new System.Drawing.Point(285, 300);
+            this.cassetteButtonsGB.Name = "cassetteButtonsGB";
+            this.cassetteButtonsGB.Size = new System.Drawing.Size(200, 100);
+            this.cassetteButtonsGB.TabIndex = 17;
+            this.cassetteButtonsGB.TabStop = false;
+            // 
+            // clearButton
+            // 
+            this.clearButton.FlatAppearance.BorderSize = 0;
+            this.clearButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.clearButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.clearButton.Font = new System.Drawing.Font("Segoe UI Semilight", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.clearButton.ForeColor = System.Drawing.Color.Black;
+            this.clearButton.Location = new System.Drawing.Point(102, 15);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(92, 80);
+            this.clearButton.TabIndex = 18;
+            this.clearButton.Text = "Clear";
+            this.clearButton.UseVisualStyleBackColor = true;
+            this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
+            // 
+            // statsButton
+            // 
+            this.statsButton.FlatAppearance.BorderSize = 0;
+            this.statsButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.statsButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.statsButton.Font = new System.Drawing.Font("Segoe UI Semilight", 11.12727F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.statsButton.ForeColor = System.Drawing.Color.Black;
+            this.statsButton.Location = new System.Drawing.Point(6, 15);
+            this.statsButton.Name = "statsButton";
+            this.statsButton.Size = new System.Drawing.Size(92, 80);
+            this.statsButton.TabIndex = 17;
+            this.statsButton.Text = "Statistics";
+            this.statsButton.UseVisualStyleBackColor = true;
+            this.statsButton.Click += new System.EventHandler(this.statsButton_Click);
+            // 
+            // otherButtonsGB
+            // 
+            this.otherButtonsGB.Controls.Add(this.clearButton);
+            this.otherButtonsGB.Controls.Add(this.statsButton);
+            this.otherButtonsGB.Location = new System.Drawing.Point(496, 300);
+            this.otherButtonsGB.Name = "otherButtonsGB";
+            this.otherButtonsGB.Size = new System.Drawing.Size(200, 100);
+            this.otherButtonsGB.TabIndex = 19;
+            this.otherButtonsGB.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(675, 412);
-            this.Controls.Add(this.richTextBox1);
+            this.ClientSize = new System.Drawing.Size(706, 412);
+            this.Controls.Add(this.cassetteButtonsGB);
+            this.Controls.Add(this.outputRichTextBox);
             this.Controls.Add(this.displayLabel);
             this.Controls.Add(this.inputTextBox);
-            this.Controls.Add(this.buttonsGroupBox);
+            this.Controls.Add(this.inputButtonsGB);
+            this.Controls.Add(this.otherButtonsGB);
             this.Font = new System.Drawing.Font("Segoe UI", 9.163636F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.Opacity = 0.98D;
             this.Text = "ATM";
-            this.buttonsGroupBox.ResumeLayout(false);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
+            this.inputButtonsGB.ResumeLayout(false);
+            this.cassetteButtonsGB.ResumeLayout(false);
+            this.otherButtonsGB.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,9 +427,15 @@
         private System.Windows.Forms.Button backspaceButton;
         private System.Windows.Forms.Button button0;
         private System.Windows.Forms.Button enterButton;
-        private System.Windows.Forms.GroupBox buttonsGroupBox;
+        private System.Windows.Forms.GroupBox inputButtonsGB;
         private System.Windows.Forms.Label displayLabel;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox outputRichTextBox;
+        private System.Windows.Forms.Button insertButton;
+        private System.Windows.Forms.Button removeButton;
+        private System.Windows.Forms.GroupBox cassetteButtonsGB;
+        private System.Windows.Forms.Button clearButton;
+        private System.Windows.Forms.Button statsButton;
+        private System.Windows.Forms.GroupBox otherButtonsGB;
     }
 }
 
