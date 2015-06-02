@@ -35,13 +35,13 @@ namespace Console_User_Interface
             {
                 if (_cashMachine.TryInsertCassettes(command.Substring(command.IndexOf(" ", StringComparison.Ordinal))))
                 {
-                    Console.WriteLine("\nСassettes have been successfully inserted\n");
+                    Console.WriteLine("\n" + _lang.InsertSuccess + "\n");
                     Console.WriteLine(_lang.Status + ":");
                     Console.WriteLine(_cashMachine.Status() + '\n');
                 }
                 else
                 {
-                    Console.WriteLine("\nFailed to insert cassettes\n");
+                    Console.WriteLine("\n" + _lang.InsertFail + "\n");
                 }
                 return true;
             }
@@ -49,7 +49,7 @@ namespace Console_User_Interface
             if (command == _lang.RemoveCommand)
             {
                 _cashMachine.RemoveCassettes();
-                Console.WriteLine("\nСassettes have been successfully removed\n");
+                Console.WriteLine("\n" + _lang.RemoveSuccess + "\n");
                 return true;
             }
 

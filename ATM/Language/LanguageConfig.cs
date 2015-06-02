@@ -40,6 +40,12 @@ namespace ATM.Language
         public readonly string Date;
         public readonly string WithdrawnSum;
         public readonly string EmptyStats;
+        public readonly string Display;
+        public readonly string SwitchLang;
+        public readonly string Enter;
+        public readonly string InsertSuccess;
+        public readonly string InsertFail;
+        public readonly string RemoveSuccess;
 
         /// <summary>
         ///     Конструктор класса LanguageConfig
@@ -80,6 +86,12 @@ namespace ATM.Language
                 Date = rm.GetString("Date", ci);
                 WithdrawnSum = rm.GetString("WithdrawnSum", ci);
                 EmptyStats = rm.GetString("EmptyStats", ci);
+                Display = rm.GetString("Display", ci);
+                SwitchLang = rm.GetString("SwitchLang", ci);
+                Enter = rm.GetString("Enter", ci);
+                InsertSuccess = rm.GetString("InsertSuccess", ci);
+                InsertFail = rm.GetString("InsertFail", ci);
+                RemoveSuccess = rm.GetString("RemoveSuccess", ci);
             }
             catch (CultureNotFoundException ex)
             {

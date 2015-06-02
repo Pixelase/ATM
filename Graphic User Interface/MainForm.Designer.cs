@@ -51,6 +51,7 @@
             this.clearButton = new System.Windows.Forms.Button();
             this.statsButton = new System.Windows.Forms.Button();
             this.otherButtonsGB = new System.Windows.Forms.GroupBox();
+            this.langButton = new System.Windows.Forms.Button();
             this.inputButtonsGB.SuspendLayout();
             this.cassetteButtonsGB.SuspendLayout();
             this.otherButtonsGB.SuspendLayout();
@@ -313,7 +314,7 @@
             this.insertButton.ForeColor = System.Drawing.Color.Black;
             this.insertButton.Location = new System.Drawing.Point(6, 14);
             this.insertButton.Name = "insertButton";
-            this.insertButton.Size = new System.Drawing.Size(92, 80);
+            this.insertButton.Size = new System.Drawing.Size(91, 80);
             this.insertButton.TabIndex = 13;
             this.insertButton.Text = "Insert cassettes";
             this.insertButton.UseVisualStyleBackColor = true;
@@ -328,7 +329,7 @@
             this.removeButton.ForeColor = System.Drawing.Color.Black;
             this.removeButton.Location = new System.Drawing.Point(102, 14);
             this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(92, 80);
+            this.removeButton.Size = new System.Drawing.Size(91, 80);
             this.removeButton.TabIndex = 16;
             this.removeButton.Text = "Remove cassettes";
             this.removeButton.UseVisualStyleBackColor = true;
@@ -353,7 +354,7 @@
             this.clearButton.ForeColor = System.Drawing.Color.Black;
             this.clearButton.Location = new System.Drawing.Point(102, 15);
             this.clearButton.Name = "clearButton";
-            this.clearButton.Size = new System.Drawing.Size(92, 80);
+            this.clearButton.Size = new System.Drawing.Size(91, 80);
             this.clearButton.TabIndex = 18;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
@@ -368,7 +369,7 @@
             this.statsButton.ForeColor = System.Drawing.Color.Black;
             this.statsButton.Location = new System.Drawing.Point(6, 15);
             this.statsButton.Name = "statsButton";
-            this.statsButton.Size = new System.Drawing.Size(92, 80);
+            this.statsButton.Size = new System.Drawing.Size(91, 80);
             this.statsButton.TabIndex = 17;
             this.statsButton.Text = "Statistics";
             this.statsButton.UseVisualStyleBackColor = true;
@@ -384,11 +385,27 @@
             this.otherButtonsGB.TabIndex = 19;
             this.otherButtonsGB.TabStop = false;
             // 
+            // langButton
+            // 
+            this.langButton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
+            this.langButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.langButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.langButton.Font = new System.Drawing.Font("Segoe UI Light", 9.818182F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.langButton.ForeColor = System.Drawing.Color.Black;
+            this.langButton.Location = new System.Drawing.Point(626, 6);
+            this.langButton.Name = "langButton";
+            this.langButton.Size = new System.Drawing.Size(68, 54);
+            this.langButton.TabIndex = 13;
+            this.langButton.Text = "Switch lang";
+            this.langButton.UseVisualStyleBackColor = true;
+            this.langButton.Click += new System.EventHandler(this.langButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(706, 412);
+            this.Controls.Add(this.langButton);
             this.Controls.Add(this.cassetteButtonsGB);
             this.Controls.Add(this.outputRichTextBox);
             this.Controls.Add(this.displayLabel);
@@ -398,7 +415,7 @@
             this.Font = new System.Drawing.Font("Segoe UI", 9.163636F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Opacity = 0.98D;
@@ -436,6 +453,7 @@
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button statsButton;
         private System.Windows.Forms.GroupBox otherButtonsGB;
+        private System.Windows.Forms.Button langButton;
     }
 }
 

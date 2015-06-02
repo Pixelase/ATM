@@ -195,4 +195,22 @@
   <data name="EmptyStats" xml:space="preserve">
     <value>Empty statistics</value>
   </data>
+  <data name="Display" xml:space="preserve">
+    <value>Display</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="SwitchLang" xml:space="preserve">
+    <value>Switch lang</value>
+  </data>
+  <data name="InsertFail" xml:space="preserve">
+    <value>Failed to insert cassettes</value>
+  </data>
+  <data name="InsertSuccess" xml:space="preserve">
+    <value>Сassettes have been successfully inserted</value>
+  </data>
+  <data name="RemoveSuccess" xml:space="preserve">
+    <value>Сassettes have been successfully removed</value>
+  </data>
 </root>

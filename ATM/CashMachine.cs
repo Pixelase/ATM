@@ -22,6 +22,7 @@ namespace ATM
         private IMoneyWriter _moneyWriter;
         private string _path;
         private decimal _balance;
+        private string _currentCulture;
 
         /// <summary>
         ///     Конструктор CashMachine
@@ -30,6 +31,7 @@ namespace ATM
         public CashMachine(string path)
         {
             XmlConfigurator.Configure();
+            _currentCulture = "en-US";
             Log.Debug("CashMashine session started");
             _path = path;
             TryInsertCassettes(path);
@@ -39,6 +41,12 @@ namespace ATM
         {
             get { return _balance; }
             private set { _balance = value; }
+        }
+
+        public string CurrentCulture
+        {
+            get { return _currentCulture; }
+            set { _currentCulture = value; }
         }
 
         /// <summary>
@@ -74,7 +82,7 @@ namespace ATM
         {
             Log.Debug("Status operation running");
 
-            var lang = new LanguageConfig("en-US");
+            var lang = new LanguageConfig(_currentCulture);
             var temp = new StringBuilder();
 
             if (_money != null && _money.Banknotes != null)

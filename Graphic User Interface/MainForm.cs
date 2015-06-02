@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using ATM;
 using ATM.Language;
@@ -13,8 +14,8 @@ namespace Graphic_User_Interface
     {
         public static readonly ILog Log = LogManager.GetLogger(typeof (MainForm));
         private readonly CashMachine _cashMachine;
-        private readonly LanguageConfig _lang;
         private readonly StatsCounter _statsCounter;
+        private LanguageConfig _lang;
         //Путь по умолчанию к файлу с кассетами
         private string _path;
         private decimal _usersRequest;
@@ -22,10 +23,12 @@ namespace Graphic_User_Interface
         public MainForm()
         {
             InitializeComponent();
+
             //Путь по умолчанию к файлу с кассетами
             _path = @"D:\Visual Studio\OOP\ATM\bin\Debug\data.json";
             _cashMachine = new CashMachine(_path);
-            _lang = new LanguageConfig("en-US");
+            _lang = new LanguageConfig(_cashMachine.CurrentCulture);
+            LoadLang();
             _statsCounter = new StatsCounter();
             XmlConfigurator.Configure();
 
@@ -110,13 +113,13 @@ namespace Graphic_User_Interface
                 _path = openFileDialog.FileName;
                 if (_cashMachine.TryInsertCassettes(_path))
                 {
-                    DisplayPrintln("\nСassettes have been successfully inserted\n");
+                    DisplayPrintln("\n" + _lang.InsertSuccess + "\n");
                     DisplayPrintln(_lang.Status + ":");
                     DisplayPrintln(_cashMachine.Status() + '\n');
                 }
                 else
                 {
-                    DisplayPrintln("\nFailed to insert cassettes\n");
+                    DisplayPrintln("\n" + _lang.InsertFail + "\n");
                 }
             }
         }
@@ -124,16 +127,16 @@ namespace Graphic_User_Interface
         private void removeButton_Click(object sender, EventArgs e)
         {
             _cashMachine.RemoveCassettes();
-            DisplayPrintln("\nСassettes have been successfully removed\n");
+            DisplayPrintln("\n" + _lang.RemoveSuccess + "\n");
         }
 
         private void statsButton_Click(object sender, EventArgs e)
         {
-
             if (_statsCounter.StatsEntries.Count != 0)
             {
                 MessageBox.Show("\n" + _lang.Date + ":                                      " + _lang.Balance +
-                               ":                    " + _lang.WithdrawnSum + ":\n" + new StatsStringViewer().Show(_statsCounter), _lang.Statistics);
+                                ":                    " + _lang.WithdrawnSum + ":\n" +
+                                new StatsStringViewer().Show(_statsCounter), _lang.Statistics);
             }
             else
             {
@@ -145,6 +148,25 @@ namespace Graphic_User_Interface
         {
             if (!string.IsNullOrEmpty(inputTextBox.Text))
                 inputTextBox.Text = inputTextBox.Text.Remove(inputTextBox.Text.Length - 1);
+        }
+
+        private void LoadLang()
+        {
+            enterButton.Text = _lang.Enter;
+            clearButton.Text = _lang.Clear.Split().First();
+            langButton.Text = _lang.SwitchLang;
+            insertButton.Text = _lang.InsertCassettes;
+            removeButton.Text = _lang.RemoveCassettes;
+            statsButton.Text = _lang.Statistics.Split().First();
+            displayLabel.Text = _lang.Display;
+        }
+
+        private void langButton_Click(object sender, EventArgs e)
+        {
+            _cashMachine.CurrentCulture = _cashMachine.CurrentCulture == "en-US" ? "ru-RU" : "en-US";
+            _lang = new LanguageConfig(_cashMachine.CurrentCulture);
+
+            LoadLang();
         }
     }
 }

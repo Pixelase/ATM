@@ -195,4 +195,22 @@
   <data name="EmptyStats" xml:space="preserve">
     <value>Статистика отсутствует</value>
   </data>
+  <data name="Display" xml:space="preserve">
+    <value>Экран</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Ввод</value>
+  </data>
+  <data name="SwitchLang" xml:space="preserve">
+    <value>Переключить яз.</value>
+  </data>
+  <data name="InsertFail" xml:space="preserve">
+    <value>Не удалось вставить кассеты</value>
+  </data>
+  <data name="InsertSuccess" xml:space="preserve">
+    <value>Кассеты успешно вставлены</value>
+  </data>
+  <data name="RemoveSuccess" xml:space="preserve">
+    <value>Кассеты успешно извлечены</value>
+  </data>
 </root>
